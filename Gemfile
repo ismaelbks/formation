@@ -33,7 +33,11 @@ gem 'jbuilder', '~> 2.5'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+#Customized with bootswatch theme : Lumen.
 gem 'bootstrap', '~> 4.0.0.alpha6'
+
+#Authentification system
+gem 'devise'
 
 group :test do
   gem 'rspec'
