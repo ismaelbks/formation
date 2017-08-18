@@ -42,6 +42,8 @@ GEM
       public_suffix (~> 2.0, >= 2.0.2)
     arel (8.0.0)
     ast (2.3.0)
+    autoprefixer-rails (7.1.2.6)
+      execjs
     axiom-types (0.1.1)
       descendants_tracker (~> 0.0.4)
       ice_nine (~> 0.11.0)
@@ -52,6 +54,10 @@ GEM
       rack (>= 0.9.0)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
+    bootstrap (4.0.0.beta)
+      autoprefixer-rails (>= 6.0.3)
+      popper_js (~> 1.11.1)
+      sass (>= 3.4.19)
     builder (3.2.3)
     byebug (9.0.6)
     capybara (2.15.1)
@@ -138,6 +144,7 @@ GEM
     parser (2.4.0.0)
       ast (~> 2.2)
     path_expander (1.0.2)
+    popper_js (1.11.1)
     public_suffix (2.0.5)
     puma (3.10.0)
     rack (2.0.3)
@@ -277,6 +284,7 @@ PLATFORMS
 
 DEPENDENCIES
   better_errors
+  bootstrap (~> 4.0.0.alpha6)
   byebug
   capybara (~> 2.13)
   coffee-rails (~> 4.2)
