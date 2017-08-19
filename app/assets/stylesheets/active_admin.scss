@@ -15,3 +15,19 @@
 // For example, to change the default status-tag color:
 //
 //   .status_tag { background: #6090DB; }
+
+#site_title.site_title { background: #3a5fcd !important; box-shadow: 0px 2.5px 10px #888888; color: #FFF;}
+#utility_nav.header-item { background: #3a5fcd !important; color: #FFF; }
+.header #utility_nav #current_user a:before { color: #FFF;}
+.header #utility_nav #logout a:before { color: #FFF; }
+
+
+//Hiding Batch Actions => Might need to put them back later
+body.index .table_tools .dropdown_menu_button.disabled, body.index .table_tools .dropdown_menu_button:disabled {display: none;}
+body.index .table_tools .dropdown_menu_list { display: none; }
+
+.admin_table table { margin-top: 2em;}
+.admin_table th {font-size: 1.5em;}
+.admin_table td {font-size: 1.15em;}
+
+.btn-view { background: #a3a1a1; padding: 0.15em 0.6em; color: #FFF; border-radius: 5px;}
