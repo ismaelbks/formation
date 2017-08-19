@@ -16,6 +16,7 @@
  @import "bootstrap-sprockets";
  @import "bootstrap";
  @import "pages";
+ @import "users";
 
 
  #login-logout {
@@ -34,4 +35,16 @@
  	box-shadow: 0px 2.5px 10px #888888;
  	padding-bottom: 1em;
  }
+
+ 
+ .shared-devise-links {
+ 	padding: 0.3em 2em;
+ 	border: solid 1px black;
+ }
+
+ .actions {
+	margin-top: 2em;
+}
+
+
 

@@ -1,0 +1,37 @@
+<div class="container dashboard-infos">
+
+	<div class="row dashboard-infos-inner">
+		<div class="col-lg-offset-2 col-lg-8 col-sm-12">
+			<div class="col-lg-12 field-inner">
+				<p class="col-sm-6">Prénom :</p>
+				<p class="col-sm-6"><%= @user.firstname %></p>
+			</div>
+			<div class="col-lg-12 field-inner">
+				<p class="col-sm-6">Nom :</p>
+				<p class="col-sm-6"><%= @user.lastname %></p>
+			</div>
+			<div class="col-lg-12 field-inner">
+				<p class="col-sm-6">Adresse e-mail :</p>
+				<p class="col-sm-6"><%= @user.email %></p>
+			</div>
+			<div class="col-lg-12 field-inner">
+				<p class="col-sm-6">Date de naissance :</p>
+				<p class="col-sm-6"><%= @user.birthdate.strftime("%d %B %Y") %></p>
+			</div>
+			<div class="col-lg-12 field-inner">
+				<p class="col-sm-6">Dernière connexion :</p>
+				<p class="col-sm-6"><%= @user.last_sign_in_at.strftime("%d-%m-%y à %Hh%M") %></p>
+			</div>
+			<div class="col-lg-12 field-inner">
+				<p class="col-sm-6">Dernière adresse IP :</p>
+				<p class="col-sm-6"><%= @user.last_sign_in_ip %></p>
+			</div>
+			<div class="col-lg-12 actions">
+				<%= link_to 'Modifier ces informations', edit_user_registration_path(current_user), class: "btn-info btn-lg " %>
+			</div>			
+
+
+		</div>
+	</div>
+
+</div>
