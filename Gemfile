@@ -42,6 +42,12 @@ gem 'bootstrap-sass', '~> 3.3.6'
 #Authentification system
 gem 'devise'
 
+#Active Admin (Console d'administration)
+gem "activeadmin"
+#Thme artic admin for active admin: https://github.com/cle61/arctic_admin
+gem 'arctic_admin'
+
+
 group :test do
   gem 'rspec'
   gem "rspec-rails"
