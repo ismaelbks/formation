@@ -27,3 +27,6 @@
 
 # Ignore SimpleCov to ensure that noone can assess weaknesses of your sourcecode
 coverage
+
+#ignore shrine uploads to avoid delay in pushing
+public/uploads

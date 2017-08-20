@@ -47,6 +47,12 @@ gem "activeadmin"
 #Thme artic admin for active admin: https://github.com/cle61/arctic_admin
 gem 'arctic_admin'
 
+#Managing image uploads with Shrine
+gem 'fastimage'
+gem 'image_processing'
+gem 'mini_magick'
+gem "shrine"
+
 
 group :test do
   gem 'rspec'

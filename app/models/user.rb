@@ -7,5 +7,5 @@ class User < ApplicationRecord
   validates :lastname, presence: true
   validates :birthdate, presence: true
 
-  has_many :projects
+  #has_many :projects
 end
