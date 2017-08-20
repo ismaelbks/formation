@@ -1,20 +1,13 @@
 class ProjectsController < ApplicationController
+
+	def index
+		@projects = Project.all
+		#@landscape_image = LandscapeImage.find(params[:id])
+	end
+
 	def show
 		@project = Project.find(params[:id])
-	end
-
-	def edit
-		@project = Project.find(params[:id])
-	end
-
-	def update
-		@project = Project.find(params[:id])
-   		if @project.save
-         	flash[:success] = 'Photo added!'
-        	redirect_to project_url(@project)
-   		else
-        	render "new"
-    	end
+		@landscape_image = LandscapeImage.find(params[:id])
 	end
 
 end

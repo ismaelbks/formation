@@ -1,0 +1,13 @@
+<div class="container">
+	<h1>Voici tous les projets</h1>
+
+		<% @projects.each do |project| %>
+			<div class="col-md-4">
+				<%-# render partial: 'landscape_images/landscape_image', locals: {landscape_images: @landscape_image.project_id } -%>
+				<h2><%= project.name %></h2>
+				<p><%= project.short_description %></p>
+				<%= link_to "Plus d'information", project_url(project), class: "btn btn-primary" %>
+			</div>
+		<% end %>
+</div>
+

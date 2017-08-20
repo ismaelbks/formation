@@ -12,13 +12,13 @@
   	<header>
 	    <div class="container">
 	    	<div class="row">
-	      		<h3 class="col-md-4 col-xs-4">ISMAEL</h3>
+	      		<h3 class="col-md-4 col-xs-4"><%= link_to "ISMAEL", root_url, id: "header_title" %></h3>
 	      		<nav class="col-md-8 col-xs-8">
 	        		<div id="login-logout">
 	          			<% if current_user %>
 	          				<%= current_user.firstname.capitalize %> | <%= link_to 'Mon Compte', user_dashboard_path(current_user) %> | <%= link_to "Déconnexion", destroy_user_session_path, :method => :delete %>
 	          			<% else %>
-	          				<%= link_to 'Login', 'users/sign_in' %> | <%= link_to 'Sign up', '/users/sign_up' %>
+	          				<%= link_to 'Login', '/users/sign_in' %> | <%= link_to 'Sign up', '/users/sign_up' %>
 	          			<% end %>
 	       			</div>
 	      		</nav>
@@ -31,6 +31,9 @@
 	<% if alert %>
 	  <p class="alert alert-danger"><%= alert %></p>
 	<% end %>
+	<% flash.each do |key, value| %>
+        <div class="alert alert-<%= key %>"><%= value %></div>
+    <% end %>
 
     <%= yield %>
   </body>

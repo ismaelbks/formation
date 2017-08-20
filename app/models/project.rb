@@ -8,7 +8,7 @@ class Project < ApplicationRecord
 	#Permet de filtrer les projets publiés uniquement.
 	scope :displayed, -> { where(display: true) }
 
-	#imageuploader for images
-	include LandscapeImageUploader::Attachment.new(:image) # adds an `image` virtual attribute
+	#The famous landscape image
+	has_one :landscape_image
 
 end

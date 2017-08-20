@@ -4,7 +4,7 @@ require "image_processing/mini_magick"
 
 
 Shrine.storages = {
-  cache: Shrine::Storage::FileSystem.new("public", prefix: "uploads/cache"), # temporary
+  cache: Shrine::Storage::FileSystem.new("public", prefix: "uploads/cache"), # temporaire
   store: Shrine::Storage::FileSystem.new("public", prefix: "uploads/store"), # permanent
 }
 

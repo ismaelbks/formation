@@ -1,22 +1,23 @@
-<div class="container">
+<div class="container-fluid">
 	<div class="col-lg-12">
-		<h1 class="col-md-8"><%= @project.name %></h1>
-		<h3 class="ol-md-4" style="padding-top:5em;">Objectif: <%=@project.collect_amount_goal%> €</h3>
+		<h1 class="col-md-12"><%= @project.name %></h1>
+		<h3 class="col-md-6 col-md-offset-6">Objectif: <%=@project.collect_amount_goal%> €</h3>
 	</div>
 
 	<div class="row">
 
-		<div class="col-md-4">
+		<div class="col-lg-5 col-lg-offset-1 col-md-7">
+			<%= render 'landscape_images/landscape_image' %>
 		</div>
 
-		<div class="col-md-8">
-			<div class="col-lg-12">
-				<p>Le projet en quelques mots : </p>
+		<div class="col-lg-6 col-md-5">
+			<div class="col-lg-12" style="padding-top:1em;">
+				<p><strong>Le projet en quelques mots : </strong></p>
 				<p><%= @project.short_description %></p>
 			</div>
 
-			<div class="col-lg-12">
-				<p>Tout savoir sur le projet :</p>
+			<div class="col-lg-12" style="padding-top:4em;" >
+				<p><strong>Tout savoir sur le projet :</strong></p>
 				<p><%= @project.long_description %></p>
 			</div>
 		</div>

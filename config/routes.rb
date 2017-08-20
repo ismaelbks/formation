@@ -9,9 +9,12 @@ Rails.application.routes.draw do
   get 'pages/home'
 
 
+
+
   root to: "pages#home"
 
-  resources :projects, only: [:new, :create, :show, :edit, :update]
+  resources :projects, only: [:index, :new, :create, :show, :edit, :update]
+  resources :landscape_images, only: [:new, :create, :show, :edit, :update]
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
