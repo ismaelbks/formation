@@ -1,6 +1,0 @@
-<div>
-  <% if @landscape_image.image_data? %>
-    <%= image_tag @landscape_image.image_url(:landscape) %>
-  <% end %>
-  <p><%= link_to 'Edit', edit_landscape_image_path(@landscape_image) %></p>
-</div>

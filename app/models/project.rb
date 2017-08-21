@@ -3,12 +3,12 @@ class Project < ApplicationRecord
 	validates :short_description, length: { maximum: 300, too_long: "Veuillez ne pas dépasser les %{count} caractères" }
 	validates :collect_amount_goal, numericality: { only_integer: true, :greater_than_or_equal_to => 20 }, presence: true
 
+	include LandscapeImageUploader::Attachment.new(:landscape)
+
 	#belongs_to :user
 
 	#Permet de filtrer les projets publiés uniquement.
 	scope :displayed, -> { where(display: true) }
 
-	#The famous landscape image
-	has_one :landscape_image
 
 end
