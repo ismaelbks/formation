@@ -4,6 +4,7 @@ class Project < ApplicationRecord
 	validates :collect_amount_goal, numericality: { only_integer: true, :greater_than_or_equal_to => 20 }, presence: true
 
 	include LandscapeImageUploader::Attachment.new(:landscape)
+	include PortraitImageUploader::Attachment.new(:portrait)
 
 	#belongs_to :user
 

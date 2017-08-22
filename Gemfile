@@ -53,6 +53,9 @@ gem 'image_processing'
 gem 'mini_magick'
 gem "shrine"
 
+#Js cropping of the image uploaded
+gem 'rails-assets-jcrop', source: 'https://rails-assets.org'
+
 
 group :test do
   gem 'rspec'

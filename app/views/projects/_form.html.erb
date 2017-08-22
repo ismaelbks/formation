@@ -51,6 +51,26 @@
 				<% end %>
 			</div>
 
+			<div class="form-group inline-group">
+			  	<%= f.label :portrait, class: "control-label col-sm-2" %>
+				<div class="col-md-6">
+					<div class="input-group">
+	        			<span class="input-group-addon"><i class="glyphicon glyphicon-picture"></i></span>
+	        			<%= f.file_field :portrait, class: "form-control" %>
+	        		</div>
+	      		</div>
+				<% if @project.portrait_data? %>
+				<div class="col-md-4">
+					<div class="checkbox">
+						<%= f.label :remove_portrait do %>
+								 <%= f.check_box :remove_portrait, class: "form-control" %>
+							Supprimer l'image?
+						<% end %>
+					</div>
+				</div>
+				<% end %>
+			</div>			
+
 			<div class="form-group">
 				<div class="col-sm-offset-2 col-sm-3">
 					<div class="checkbox">
@@ -61,7 +81,7 @@
 		    		</div>
 				</div>
 				<div class="col-sm-6">
-					<%= f.submit 'Enregistrer', :class => 'btn btn-primary btn-lg' %>
+					<%= f.submit 'Enregistrer', :class => 'btn btn-primary btn-lg btn-toosm' %>
 				</div>	
 			</div>
 

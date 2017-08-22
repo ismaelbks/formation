@@ -1,25 +1,32 @@
-<div class="container-fluid">
+<div class="container">
 	<div class="col-lg-12">
-		<h1 class="col-md-12"><%= @project.name %></h1>
-		<h3 class="col-md-6 col-md-offset-6">Objectif: <%=@project.collect_amount_goal%> €</h3>
+		<h1 class="col-md-12 well"><%= @project.name %></h1>
 	</div>
 
-	<div class="row">
-
-		<div class="col-lg-5 col-lg-offset-1 col-md-7">
-			<%= render 'landscape_images/landscape_image' %>
+	<div class="container">
+		
+		<div class="col-lg-6">
+			<div class="image">
+				<% if @project.landscape_data? %>
+					<%= image_tag @project.landscape_url(:landscape), class: "img-responsive" %>
+				<% end %>
+			</div>
 		</div>
 
-		<div class="col-lg-6 col-md-5">
+		<div class="col-lg-6">
+			<h4 class="col-lg-12">Objectif: <%=@project.collect_amount_goal%> €</h4>
 			<div class="col-lg-12" style="padding-top:1em;">
 				<p><strong>Le projet en quelques mots : </strong></p>
 				<p><%= @project.short_description %></p>
 			</div>
 
-			<div class="col-lg-12" style="padding-top:4em;" >
+			<div class="col-lg-12" style="padding-top:1em;" >
 				<p><strong>Tout savoir sur le projet :</strong></p>
 				<p><%= @project.long_description %></p>
 			</div>
+			<div class="col-lg-6">
+				<%= link_to 'Modifier projet', edit_project_path(@project), class: 'btn btn-primary' %>
+			</div>			
 		</div>
 
 	</div>

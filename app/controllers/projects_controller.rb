@@ -1,19 +1,19 @@
 class ProjectsController < ApplicationController
 
 	def index
-		@projects = Project.all
+		project_all
 	end
 
 	def show
-		@project = Project.find(params[:id])
+		project_find
 	end
 
 	def edit
-		@project = Project.find(params[:id])
+		project_find
 	end
 
 	def update
-		@project = Project.find(params[:id])
+		project_find
 	    if @project.update_attributes(project_params)
 	      flash[:success] = 'Projet modifié !'
 	      redirect_to root_url
@@ -25,7 +25,15 @@ class ProjectsController < ApplicationController
 	private
 
 	def project_params
-		params.require(:project).permit(:name, :short_description, :long_description, :display, :landscape, :remove_landscape)
+		params.require(:project).permit(:name, :short_description, :long_description, :display, :landscape, :remove_landscape, :portrait, :remove_portrait)
+	end
+
+	def project_find
+		@project = Project.find(params[:id])
+	end
+
+	def project_all
+		@projects = Project.all
 	end
 end
 	
