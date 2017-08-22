@@ -8,9 +8,6 @@ Rails.application.routes.draw do
   
   get 'pages/home'
 
-
-
-
   root to: "pages#home"
 
   resources :projects, only: [:index, :new, :create, :show, :edit, :update]

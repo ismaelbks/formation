@@ -1,5 +1,20 @@
 class ProjectsController < ApplicationController
 
+	
+	def new
+		@project = Project.new
+	end
+
+	def create
+		@project = Project.new(project_params)
+		if @project.save 
+			redirect_to @project, flash[:notice] = "Le projet a bien été sauvegardé"
+		else 
+			render 'new'
+		end
+	end
+
+
 	def index
 		project_all
 	end
@@ -15,7 +30,7 @@ class ProjectsController < ApplicationController
 	def update
 		project_find
 	    if @project.update_attributes(project_params)
-	      flash[:success] = 'Projet modifié !'
+	      flash[:notice] = 'Projet modifié !'
 	      redirect_to root_url
 	    else
 	      render 'edit'
@@ -25,7 +40,17 @@ class ProjectsController < ApplicationController
 	private
 
 	def project_params
-		params.require(:project).permit(:name, :short_description, :long_description, :display, :landscape, :remove_landscape, :portrait, :remove_portrait)
+		params.require(:project).
+			permit(
+				:name, 
+				:short_description, 
+				:long_description, 
+				:display, 
+				:landscape, 
+				:remove_landscape, 
+				:portrait, 
+				:remove_portrait
+				)
 	end
 
 	def project_find
