@@ -12,4 +12,5 @@ ActiveAdmin.register Project do
 #   permitted
 # end
 
+
 end

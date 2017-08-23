@@ -6,3 +6,37 @@
 	padding-top: 10px !important;
 	padding-bottom: 10px !important;
 }
+
+.bandeau {
+	display: flex;
+	min-height: 6em;
+	margin-top: 2em;
+}
+
+.bandeau-inner {
+	margin: auto;
+}
+
+.project-box {
+	min-height: 28em;
+	max-width: 22em;
+}
+
+.project-short-describe {
+	min-height: 6em;
+	text-align: justify;
+	max-width: 20em;
+	margin: 0 auto;
+}
+
+.project-name {
+	text-align: center;
+}
+
+.vertical-centered {
+	display: flex;
+}
+
+.child-vertical-centered {
+	margin: auto;
+}
