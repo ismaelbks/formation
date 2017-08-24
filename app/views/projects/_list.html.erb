@@ -1,6 +1,6 @@
 	<div class= "row">
 		<% @projects.each do |project| %>
-				<div class="col-md-4">
+				<div class="col-md-3">
 					<div class="thumbnail project-box">
 						<% if project.portrait_data? %>
 							<%= image_tag project.portrait_url(:portrait), class: "img-responsive" %>

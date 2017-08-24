@@ -17,6 +17,7 @@ class ProjectsController < ApplicationController
 
 	def index
 		project_all
+		categories_all
 	end
 
 	def show
@@ -59,6 +60,10 @@ class ProjectsController < ApplicationController
 
 	def project_all
 		@projects = Project.all
+	end
+
+	def categories_all
+		@categories = Category.all
 	end
 end
 	

@@ -9,9 +9,21 @@
 		</div>
 	</div>
 
+	<div class="panel row bandeau">
+
+		<div class="col-md-4 bandeau-inner">
+			<h2 class="reset">Nos catégories</h2>
+		</div>
+		<div class="col-md-8 bandeau-inner ">
+			<% @categories.each do |category| %>
+			<div class="col-md-4">
+				<%= link_to category.title, '#', class: "btn btn-primary btn-height-limited" %>
+			</div>
+			<% end %>
+		</div>
+	</div>	
 
 	<%= render 'list' %>
-
 
 </div>
 

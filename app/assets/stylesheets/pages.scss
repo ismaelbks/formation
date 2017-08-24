@@ -8,8 +8,41 @@
 .baseline {
 	text-align: center;
 	font-size: 2em;
+	color: #FFF;
 }
 
 .baseline-logo {
 	text-align: center;
+}
+
+#project-list {
+	padding-top: 3em;
+	background-color: #FFF;
+}
+
+#banner {
+	min-height: 45em;
+	display: flex;
+	background-image: url("banner-image.jpg");
+	background-attachment: fixed;
+	background-size: cover;
+
+}
+
+.flexed {
+	margin: auto;
+	text-align: center;
+}
+
+.baseline-logo a {
+}
+
+.homepage-h1,  {
+	margin-top: 1.5em;
+	text-align: center;
+	font-size: 4em;
+}
+
+.FFFh1 {
+	color: #FFF !important;
 }
