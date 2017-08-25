@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170824214112) do
+ActiveRecord::Schema.define(version: 20170825171829) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -62,6 +62,7 @@ ActiveRecord::Schema.define(version: 20170824214112) do
     t.text "landscape_data"
     t.text "portrait_data"
     t.integer "category_id"
+    t.string "status", default: "brouillon"
     t.index ["category_id"], name: "index_projects_on_category_id"
   end
 

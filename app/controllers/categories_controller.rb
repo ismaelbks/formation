@@ -3,6 +3,23 @@ class CategoriesController < ApplicationController
 	end 
 
 	def show
-		@projects = Project.find(params[:category_id]).project
+		@category = Category.find(params[:id])
 	end
+
+	def list
+		project_category
+		category_find
+	end
+
+		private
+
+		def project_category
+			@projects = Category.find(params[:id]).projects.displayed
+		end
+
+		def category_find
+			@category = Category.find(params[:id])
+		end
+
+
 end

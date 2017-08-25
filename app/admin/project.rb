@@ -2,7 +2,7 @@ ActiveAdmin.register Project do
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
 #
- permit_params :name, :collect_amount_goal, :short_description, :long_description, :portrait, :landscape, :display, :remove_landscape, :remove_portrait, :category_id
+ permit_params :name, :collect_amount_goal, :short_description, :long_description, :portrait, :landscape, :display, :remove_landscape, :remove_portrait, :category_id, :status
  scope :displayed
 
  filter :name
@@ -23,7 +23,7 @@ ActiveAdmin.register Project do
 		column "Nom du projet", :name
 		column "Objectif de collecte", :collect_amount_goal
 		column "Catégorie associée", :category
-		column "Affiché ?", :display
+		column "Statut", :status
 		column "Image du porteur"  do |f|
 			image_tag f.portrait_url(:portrait), class: "aa-index-image" unless f.portrait_data.nil?
 		end
@@ -38,7 +38,7 @@ ActiveAdmin.register Project do
 		  f.input :collect_amount_goal, label: "Objectif de collecte"
 	      f.input :short_description, label: "Description courte"   
 	      f.input :long_description, label: "Description longue"
-          f.input :display, label: "Affiché ?"
+          f.input :status, label: "Statut", as: :select, :collection => ["brouillon", "en cours", "échec", "succés"], :allow_blank => "false"
 	      f.file_field :portrait, label: "Image portrait", class: "aa-file-field-form"
 	      f.file_field :landscape, label: "Image paysage", class: "aa-file-field-form even"
 	  end
@@ -67,8 +67,8 @@ ActiveAdmin.register Project do
 			f.category
 		end
 
-		row "Affiché ?" do
-			f.display
+		row "Statut" do
+			f.status
 		end
 
 		row "Image portrait" do |f|
@@ -84,7 +84,6 @@ ActiveAdmin.register Project do
         end   
       end  			
     end
-
 
 
 end

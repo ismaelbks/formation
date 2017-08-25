@@ -12,9 +12,7 @@ Rails.application.routes.draw do
 
   resources :projects, only: [:index, :new, :create, :show, :edit, :update]
 
-  resources :categories do
-      resources :projects, shallow: true
-  end
+  get 'categories/:id/projects', to: 'categories#list', as: 'categories-projects'
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
