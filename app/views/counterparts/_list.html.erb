@@ -1,0 +1,20 @@
+<div class="col-md-3">
+	<h2 class="hidden-aa">&nbsp;&nbsp;Contreparties</h2>
+	<% @counterparts.each do |counterpart| %>
+		<div class="col-md-12 col-sm-4">
+			<div class="thumbnail project-box">
+				<% if counterpart.portrait_data? %>
+					<%= image_tag counterpart.portrait_url(:portrait), class: "img-responsive img-aa" %>
+				<% end %>
+				<h2 class="project-name"> <%= counterpart.name %></h2>
+				<p class="project-short-describe"><%= counterpart.description %></p>
+				<hr>
+				<p class="counterpart-amount">&nbsp;&nbsp;&nbsp;Montant minimum : <%= counterpart.amount %> €</p>
+				<p class="counterpart-number">&nbsp;&nbsp;&nbsp;Nombre disponible : <%= counterpart.stock %> / <%= counterpart.number %></p>
+				<hr class="hidden-aa">
+				<%= link_to "Contribuer", '#', class: "btn btn-primary nav-justified hidden-aa" %>
+				
+			</div>
+		</div>
+	<% end %>
+</div>

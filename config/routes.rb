@@ -14,6 +14,8 @@ Rails.application.routes.draw do
 
   get 'categories/:id/projects', to: 'categories#list', as: 'categories-projects'
 
+  #get 'projects/:id/contreparties', to: 'contreparties#list', as: 'contreparties-projects'
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
 end

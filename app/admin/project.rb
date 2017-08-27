@@ -18,7 +18,15 @@ ActiveAdmin.register Project do
 #   permitted
 # end
 
-	index do 
+	controller do 
+		def show
+			@counterparts = Project.find(params[:id]).counterparts
+		end
+
+	end
+
+	index title: "Projets" do 
+		h1 "Projets"
 		column "ID", :id
 		column "Nom du projet", :name
 		column "Objectif de collecte", :collect_amount_goal
@@ -45,45 +53,59 @@ ActiveAdmin.register Project do
 	  f.actions
 	end
 
-	show do |f| 
-      attributes_table do
-		row "Nom du projet" do 
-			f.name.capitalize
-		end
+	show do |f|
+		tabs do
+  			tab :Projet do 
+			  	h1 f.name.capitalize
+		      	attributes_table do
+					#row "Nom du projet" do 
+					#	f.name.capitalize
+					#end
 
-		row "Objectif de collecte" do
-			number_to_currency f.collect_amount_goal, :unit => "€ "
-		end
+					row "Objectif de collecte" do
+						number_to_currency f.collect_amount_goal, :unit => "€ "
+					end
 
-		row "Description courte" do
-			f.short_description
-		end
+					row "Description courte" do
+						f.short_description
+					end
 
-		row "Description longue" do
-			f.long_description
-		end
+					row "Description longue" do
+						f.long_description
+					end
 
-		row "Catégorie associée" do
-			f.category
-		end
+					row "Catégorie associée" do
+						f.category
+					end
 
-		row "Statut" do
-			f.status
-		end
+					row "Statut" do
+						f.status
+					end
 
-		row "Image portrait" do |f|
-        	image_tag f.portrait_url(:portrait) unless f.portrait.nil?
-      	end
+					row "Image portrait" do |f|
+			        	image_tag f.portrait_url(:portrait) unless f.portrait.nil?
+			      	end
 
-      	row "Image Paysage" do |f|
-      		image_tag f.landscape_url(:landscape) unless f.landscape.nil?
-      	end 
+			      	row "Image Paysage" do |f|
+			      		image_tag f.landscape_url(:landscape) unless f.landscape.nil?
+			      	end 
 
-      	row "Raccourcis" do 
-            link_to "Revenir à la liste des projets", admin_projects_path, class: "btn btn-primary"
-        end   
-      end  			
+			      	row "Raccourcis" do 
+			            link_to "Revenir à la liste des projets", admin_projects_path, class: "btn btn-primary"
+			        end   
+		        end
+		    end
+
+		    tab :Contreparties do
+
+		    end
+
+		end  			
     end
+
+    sidebar :Contreparties, only: :show do
+  		render 'counterparts/list'
+	end
 
 
 end

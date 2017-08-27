@@ -1,11 +1,18 @@
-<div class="jumbotron" id="banner">
+<section class="jumbotron" id="banner">
 	<div class="flexed">
 		<h1 class="homepage-h1 FFFh1">Hello everybody</h1>
 		<p class="baseline">This is my app</p>
 		<%= link_to "Voir nos projets", projects_url, class: "baseline-logo btn btn-primary col-sm-4 col-sm-offset-4 col-xs-4 col-xs-offset-4" %>
 	</div>
-</div>
+</section>
 
-<div class="container-fluid" id="project-list" style="padding-top: 2em">
+<section class="container-fluid" id="project-list" style="padding-top: 2em">
+	<h2>Collecte en cours</h2>
 	<%= render 'projects/list' %>
-</div>
+</section>
+
+<section class="container-fluid" id="information-societe">
+	<div class="col-md-6 col-md-offset-3" id="information-societe-inner">
+		<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.</p>
+	</div>
+</section>

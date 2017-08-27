@@ -14,6 +14,7 @@ permit_params :title, :description, :image, :remove_image
 
 
 	index do
+		h1 "Catégories"
 		column "ID", :id
 		column "Nom", :title
 		column "Description de la catégorie", :description

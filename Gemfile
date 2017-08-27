@@ -33,6 +33,7 @@ gem 'jbuilder', '~> 2.5'
 #jquery gem
 gem 'jquery-rails'
 
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

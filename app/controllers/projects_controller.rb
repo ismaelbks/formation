@@ -22,6 +22,7 @@ class ProjectsController < ApplicationController
 
 	def show
 		project_find
+		@counterparts = Project.find(params[:id]).counterparts
 	end
 
 	def edit

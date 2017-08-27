@@ -46,3 +46,19 @@
 .FFFh1 {
 	color: #FFF !important;
 }
+
+#information-societe {
+	display: flex;
+	min-height: 30em;
+	padding: 4em 0;
+	background-image: url("45-degree-fabric-light"), url("bleu-ciel");
+	margin-top: 3em;
+}
+
+#information-societe-inner {
+	margin: 5em auto;
+	text-align: justify;
+	padding: 2em 2em;
+	line-height: 2em;
+	font-size:1.25em;
+}

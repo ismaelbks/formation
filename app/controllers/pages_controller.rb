@@ -6,6 +6,6 @@ class PagesController < ApplicationController
   private
 
   	def project_all
-		@projects = Project.displayed.all
+		@projects = Project.running.all
 	end
 end

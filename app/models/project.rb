@@ -5,11 +5,13 @@ class Project < ApplicationRecord
 	validates :status, inclusion: { in: ["brouillon", "en cours", "succés", "échec"] }
 
 	belongs_to :category
+	has_many :counterparts
 
 	include LandscapeImageUploader::Attachment.new(:landscape)
 	include PortraitImageUploader::Attachment.new(:portrait)
 
 	#Permet de filtrer les projets publiés uniquement.
 	scope :displayed, -> { where(status: ["en cours", "succés", "échec"]) }
+	scope :running, -> {where(status: "en cours")}
 
 end

@@ -1,33 +1,32 @@
-<div class="container">
-	<div class="col-lg-12">
-		<div class="row well bandeau">
-			<h1 class="col-md-10 bandeau-inner "><%= @project.name %></h1>
-			<%= link_to 'Modifier projet', edit_project_path(@project), class: 'btn btn-primary col-md-2 bandeau-inner' %>
-		</div>
+<div class="jumbotron project-banner" style="background-image: url('<%= @project.landscape_url(:landscape) %>');">
+	<div class="row well bandeau">
+		<h1 class="col-md-10 bandeau-inner "><%= @project.name %></h1>
+		<%= link_to 'Modifier projet', edit_project_path(@project), class: 'btn btn-primary col-md-2 bandeau-inner' %>
+	</div>
+</div>
 
-	<div class="container">
-		
-		<div class="col-lg-6">
-			<div class="image">
-				<% if @project.landscape_data? %>
-					<%= image_tag @project.landscape_url(:landscape), class: "img-responsive" %>
-				<% end %>
-			</div>
-		</div>
+ <div class="container-fluid">
+ 	<div class="row">
 
-		<div class="col-lg-6">
-			<h4 class="col-lg-12">Objectif: <%=@project.collect_amount_goal%> €</h4>
-			<div class="col-lg-12" style="padding-top:1em;">
-				<p><strong>Le projet en quelques mots : </strong></p>
+		<div class="col-md-9">
+			
+			<h2 class="col-lg-12">Objectif: <%=@project.collect_amount_goal%> €</h2>
+			<div class="col-lg-12 infos-projet" style="padding-top:1em;">
+				<h3><strong>Le projet en quelques mots : </strong></h3>
+				<hr>
 				<p><%= @project.short_description %></p>
 			</div>
 
-			<div class="col-lg-12" style="padding-top:1em;" >
-				<p><strong>Tout savoir sur le projet :</strong></p>
+			<div class="col-lg-12 infos-projet" style="padding-top:1em;" >
+				<h3><strong>Tout savoir sur le projet :</strong></h3>
+				<hr>				
 				<p><%= @project.long_description %></p>
 			</div>
-			
 		</div>
 
+		<!-- partial below class is col-md-3 -->
+		<%= render "counterparts/list" %>
+
 	</div>
+
 </div>

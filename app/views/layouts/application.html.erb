@@ -3,6 +3,9 @@
   <head>
     <title>Formation</title>
     <%= csrf_meta_tags %>
+    <% if content_for?(:head) %>
+    	<%= yield(:head) %>
+  	<% end %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
@@ -33,5 +36,24 @@
 	<% end %>
 
     <%= yield %>
+
+
+    <section class="footer container-fluid">
+
+    	<div class="col-sm-offset-2 col-sm-4 footer-inner">
+    		<h3>Lorem ipsum</h3>
+    		<h4>Lorem ispum dolor sit admet</h4>
+    		<h4>Lorem ispum dolor sit admet</h4>
+    	</div>
+
+    	<div class="col-sm-4 footer-inner">
+    		<h3>Lorem ipsum</h3>
+    		<h4>Lorem ispum dolor sit admet</h4>
+    		<h4>Lorem ispum dolor sit admet</h4>
+    	</div>
+
+    </section>
+
+
   </body>
 </html>

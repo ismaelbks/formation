@@ -11,10 +11,26 @@
 	display: flex;
 	min-height: 6em;
 	margin-top: 2em;
+	position: absolute;
+	min-width: 60%;
+	bottom: 1em;
+	right: 5em;
+	background-color: rgba(255, 255, 255, 0.5);
+}
+
+.bandeau-index {
+	display: flex;
+	min-height: 6em;
+	margin-top: 2em;
 }
 
 .bandeau-inner {
 	margin: auto;
+}
+
+.bandeau h1 {
+	color: #183677;
+	font-weight: 800;
 }
 
 .project-box {
@@ -44,4 +60,22 @@
 
 .reset {
 	margin-top: -5px;
+}
+
+.project-banner {
+	background-attachment: fixed;
+	min-height: 30em;
+	position: relative;
+	background-repeat: repeat-x;
+	background-size: 50%;
+}
+
+.infos-projet {
+	box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+	margin-top: 2.15em;
+	padding: 0 1.5em 2em 2em;
+}
+
+.checkbox {
+
 }

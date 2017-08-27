@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170825171829) do
+ActiveRecord::Schema.define(version: 20170827170602) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -49,6 +49,20 @@ ActiveRecord::Schema.define(version: 20170825171829) do
     t.text "image_data"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "counterparts", force: :cascade do |t|
+    t.string "name"
+    t.integer "amount"
+    t.integer "number"
+    t.text "description"
+    t.text "portrait_data"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "project_id"
+    t.boolean "stock_illimite", default: false
+    t.integer "stock"
+    t.index ["project_id"], name: "index_counterparts_on_project_id"
   end
 
   create_table "projects", force: :cascade do |t|
