@@ -7,6 +7,8 @@ class Project < ApplicationRecord
 	belongs_to :category
 	has_many :counterparts
 
+	accepts_nested_attributes_for :counterparts, :allow_destroy => true
+
 	include LandscapeImageUploader::Attachment.new(:landscape)
 	include PortraitImageUploader::Attachment.new(:portrait)
 

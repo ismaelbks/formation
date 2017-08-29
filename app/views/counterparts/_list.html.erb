@@ -1,7 +1,7 @@
 <div class="col-md-3">
 	<h2 class="hidden-aa">&nbsp;&nbsp;Contreparties</h2>
 	<% @counterparts.each do |counterpart| %>
-		<div class="col-md-12 col-sm-4">
+		<div class="col-md-12 col-sm-4 bloc-contrepartie">
 			<div class="thumbnail project-box">
 				<% if counterpart.portrait_data? %>
 					<%= image_tag counterpart.portrait_url(:portrait), class: "img-responsive img-aa" %>

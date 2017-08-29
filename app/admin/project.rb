@@ -2,13 +2,17 @@ ActiveAdmin.register Project do
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
 #
- permit_params :name, :collect_amount_goal, :short_description, :long_description, :portrait, :landscape, :display, :remove_landscape, :remove_portrait, :category_id, :status
+ permit_params :name, :collect_amount_goal, :short_description, :long_description, :portrait, :landscape, :display, :remove_landscape, :remove_portrait, :category_id, :status,
+ 	counterparts_attributes: [ :amount, :name, :description, :number, :project_id, :portrait, :remove_portrait, :stock_illimite, :stock, :_destroy, :id]
+
  scope :displayed
 
  filter :name
  filter :collect_amount_goal
  filter :display, as: :check_boxes
  filter :category
+
+ config.create_another = true
 
 # or
 #
@@ -39,18 +43,41 @@ ActiveAdmin.register Project do
 	end
 
 	form do |f|
-		f.semantic_errors
-		f.inputs do 
-		  f.input :name, label: "Nom du projet"
-		  f.input :category, label: "Catégorie associée"
-		  f.input :collect_amount_goal, label: "Objectif de collecte"
-	      f.input :short_description, label: "Description courte"   
-	      f.input :long_description, label: "Description longue"
-          f.input :status, label: "Statut", as: :select, :collection => ["brouillon", "en cours", "échec", "succés"], :allow_blank => "false"
-	      f.file_field :portrait, label: "Image portrait", class: "aa-file-field-form"
-	      f.file_field :landscape, label: "Image paysage", class: "aa-file-field-form even"
-	  end
-	  f.actions
+		tabs do
+			tab :Projet do 
+				f.semantic_errors
+				f.inputs do 
+					f.input :name, label: "Nom du projet"
+					f.input :category, label: "Catégorie associée"
+					f.input :collect_amount_goal, label: "Objectif de collecte"
+					f.input :short_description, label: "Description courte"   
+					f.input :long_description, label: "Description longue"
+					f.input :status, label: "Statut", as: :select, :collection => ["brouillon", "en cours", "échec", "succés"], :allow_blank => "false"
+					f.file_field :portrait, label: "Image portrait", class: "aa-file-field-form"
+					f.file_field :landscape, label: "Image paysage", class: "aa-file-field-form even"
+			    end
+			end
+			
+			tab :Contreparties do
+				f.inputs do
+					f.has_many :counterparts, heading: 'Contreparties',
+                             				  allow_destroy: true,
+                              				  new_record: "Créer contrepartie" do |a|
+                       a.input :name, label: "Nom"
+                       a.input :description, label: "Description"
+                       a.input :amount, label: "Montant plancher"
+					   a.input :number, label: "Nombre total"
+					   a.input :stock_illimite, label: "Stock illimité ?"
+					   a.input :stock, label: "Stock disponible"
+                       a.file_field :portrait, label: "Illustration"
+                       a.input :portrait, :as => :file
+                    end
+                end
+		    end
+
+		end
+		f.actions
+
 	end
 
 	show do |f|
@@ -97,15 +124,16 @@ ActiveAdmin.register Project do
 		    end
 
 		    tab :Contreparties do
+		    	render 'counterparts/list'
 
 		    end
 
 		end  			
     end
 
-    sidebar :Contreparties, only: :show do
-  		render 'counterparts/list'
-	end
+    #sidebar :Contreparties, only: :show do
+  	#	render 'counterparts/list'
+	#end
 
 
 end
