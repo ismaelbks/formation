@@ -60,6 +60,9 @@ gem "shrine"
 #Js cropping of the image uploaded
 gem 'rails-assets-jcrop', source: 'https://rails-assets.org'
 
+#Project states managing
+gem 'statesman'
+
 
 group :test do
   gem 'rspec'
