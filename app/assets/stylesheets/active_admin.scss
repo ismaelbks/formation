@@ -28,8 +28,8 @@
 
 
 //Hiding Batch Actions => Might need to put them back later
-body.index .table_tools .dropdown_menu_button.disabled, body.index .table_tools .dropdown_menu_button:disabled {display: none;}
-body.index .table_tools .dropdown_menu_list { display: none; }
+//body.index .table_tools .dropdown_menu_button.disabled, body.index .table_tools .dropdown_menu_button:disabled {display: none;}
+//body.index .table_tools .dropdown_menu_list { display: none; }
 
 .admin_table table { margin-top: 2em;}
 .admin_table th {font-size: 1.5em;}
@@ -118,7 +118,3 @@ body.index .table_tools .dropdown_menu_list { display: none; }
 	background: #FFF;
 }
 
-fieldset.inputs.has_many_fields {
-	border: 2px solid #3a5fcd;
-	padding-top: 1.5em;
-}

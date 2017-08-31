@@ -10,7 +10,13 @@
 				<p class="project-short-describe"><%= counterpart.description %></p>
 				<hr>
 				<p class="counterpart-amount">&nbsp;&nbsp;&nbsp;Montant minimum : <%= counterpart.amount %> €</p>
-				<p class="counterpart-number">&nbsp;&nbsp;&nbsp;Nombre disponible : <%= counterpart.stock %> / <%= counterpart.number %></p>
+				<p class="counterpart-number">
+					<% if counterpart.stock_illimite? %>
+						&nbsp;&nbsp;&nbsp;Nombre disponible : <span style="font-size:2em;line-height: 0.5em;">&#8734;</span>
+					<% else %>
+						&nbsp;&nbsp;&nbsp;Nombre disponible : <%= counterpart.stock %> / <%= counterpart.number %>
+					<% end %>
+					</p>
 				<hr class="hidden-aa">
 				<%= link_to "Contribuer", '#', class: "btn btn-primary nav-justified hidden-aa" %>
 				

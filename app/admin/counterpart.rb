@@ -12,6 +12,17 @@ config.create_another = true
 #   permitted
 # end
 
+controller do 
+	def update
+		if Counterpart.save
+			if Counterpart.stock_illimite?
+				Counterpart.stock = 10000000000
+			end
+		end
+	end
+end
+
+
 	index title: "Toutes les contreparties" do
 		h1 "Contreparties" 
 		column "ID", :id

@@ -63,6 +63,7 @@ ActiveAdmin.register Project do
 					f.has_many :counterparts, heading: 'Contreparties',
                              				  allow_destroy: true,
                               				  new_record: "Créer contrepartie" do |a|
+                      a.inputs "Contrepartie" do
                        a.input :name, label: "Nom"
                        a.input :description, label: "Description"
                        a.input :amount, label: "Montant plancher"
@@ -71,6 +72,7 @@ ActiveAdmin.register Project do
 					   a.input :stock, label: "Stock disponible"
                        a.file_field :portrait, label: "Illustration"
                        a.input :portrait, :as => :file
+                     end
                     end
                 end
 		    end
