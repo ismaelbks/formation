@@ -4,14 +4,16 @@
 					<div class="thumbnail project-box">
 						<% if project.portrait_data? %>
 							<%= image_tag project.portrait_url(:portrait), class: "img-responsive" %>
-								<% if project.status == "en cours" %>
-									<span class="label label-primary">En cours</span>
-								<% elsif project.status == "succés" %>
-									<span class="label label-success">Réussi</span>
-								<% elsif project.status == "échec" %>
-									<span class="label label-warning">Echec</span>
-								<% else %>
-									<span class="label label-default">Brouillon</span>
+							<% if project.current_state == "Ongoing" %>
+								<span class="label label-primary">En cours</span>
+							<% elsif project.current_state == "Success"  %>
+								<span class="label label-success">Réussi</span>
+							<% elsif project.current_state == "Failure"  %>
+								<span class="label label-warning">Echec</span>
+							<% elsif project.current_state == "Upcoming"  %>
+								<span class="label label-info">Bientôt</span>								
+							<% else %>
+								<span class="label label-default">Brouillon</span>
 							<% end %>
 						<% end %>
 						<h2 class="project-name"><%= project.name %></h2>

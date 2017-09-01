@@ -2,15 +2,14 @@ ActiveAdmin.register Project do
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
 #
- permit_params :name, :collect_amount_goal, :short_description, :long_description, :portrait, :landscape, :display, :remove_landscape, :remove_portrait, :category_id, :status,
+ permit_params :name, :collect_amount_goal, :short_description, :long_description, :portrait, :landscape, :remove_landscape, :remove_portrait, :category_id, :statement,
  	counterparts_attributes: [ :amount, :name, :description, :number, :project_id, :portrait, :remove_portrait, :stock_illimite, :stock, :_destroy, :id]
 
- scope :displayed
 
  filter :name
  filter :collect_amount_goal
- filter :display, as: :check_boxes
  filter :category
+ filter :statement, checkboxes: true
 
  config.create_another = true
 
@@ -22,6 +21,48 @@ ActiveAdmin.register Project do
 #   permitted
 # end
 
+	member_action :upcoming,  method: :put do
+		project = Project.find(params[:id])
+		if project.state_machine.transition_to(:Upcoming)
+			project.set_statement(project.state_machine.current_state)
+			redirect_to admin_project_path(project)
+			flash[:notice] = "Statut du projet mis à jour"
+		else 
+			redirect_to admin_project_path
+			flash[:alert] = "Action refusée"
+		end
+	end
+
+	member_action :ongoing,  method: :put do
+		project = Project.find(params[:id])
+		if project.state_machine.transition_to(:Ongoing)
+			project.set_statement(project.state_machine.current_state)
+			redirect_to admin_project_path(project)
+			flash[:notice] = "Le projet a bien été publié"
+		else 
+			redirect_to admin_project_path
+			flash[:alert] = "Action refusée"
+		end
+	end
+
+
+
+
+
+
+	action_item :upcoming, only: :show, 
+		if: proc{ Project.find(params[:id]).statement == "Draft"} do
+			link_to 'Accepter le projet', upcoming_admin_project_path, method: :put
+	end
+
+	action_item :ongoing, only: :show, 
+		if: proc{ Project.find(params[:id]).statement == "Upcoming"} do
+			link_to 'Publier le projet', ongoing_admin_project_path, method: :put
+	end    
+
+
+
+
 	controller do 
 		def show
 			@counterparts = Project.find(params[:id]).counterparts
@@ -29,13 +70,15 @@ ActiveAdmin.register Project do
 
 	end
 
+
+
 	index title: "Projets" do 
 		h1 "Projets"
 		column "ID", :id
 		column "Nom du projet", :name
+		column "Statut", :statement
 		column "Objectif de collecte", :collect_amount_goal
 		column "Catégorie associée", :category
-		column "Statut", :status
 		column "Image du porteur"  do |f|
 			image_tag f.portrait_url(:portrait), class: "aa-index-image" unless f.portrait_data.nil?
 		end
@@ -52,7 +95,6 @@ ActiveAdmin.register Project do
 					f.input :collect_amount_goal, label: "Objectif de collecte"
 					f.input :short_description, label: "Description courte"   
 					f.input :long_description, label: "Description longue"
-					f.input :status, label: "Statut", as: :select, :collection => ["brouillon", "en cours", "échec", "succés"], :allow_blank => "false"
 					f.file_field :portrait, label: "Image portrait", class: "aa-file-field-form"
 					f.file_field :landscape, label: "Image paysage", class: "aa-file-field-form even"
 			    end
@@ -91,6 +133,10 @@ ActiveAdmin.register Project do
 					#	f.name.capitalize
 					#end
 
+					row "Statut" do 
+						f.statement
+					end
+
 					row "Objectif de collecte" do
 						number_to_currency f.collect_amount_goal, :unit => "€ "
 					end
@@ -105,10 +151,6 @@ ActiveAdmin.register Project do
 
 					row "Catégorie associée" do
 						f.category
-					end
-
-					row "Statut" do
-						f.status
 					end
 
 					row "Image portrait" do |f|
@@ -128,6 +170,11 @@ ActiveAdmin.register Project do
 		    tab :Contreparties do
 		    	render 'counterparts/list'
 
+		    end
+
+		    tab :Commentaires do
+		    	h1 "Commentaires"
+		    	active_admin_comments
 		    end
 
 		end  			

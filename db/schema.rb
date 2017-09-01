@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170831211352) do
+ActiveRecord::Schema.define(version: 20170901214044) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -82,13 +82,12 @@ ActiveRecord::Schema.define(version: 20170831211352) do
     t.text "short_description"
     t.text "long_description"
     t.integer "collect_amount_goal"
-    t.boolean "display", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.text "landscape_data"
     t.text "portrait_data"
     t.integer "category_id"
-    t.string "status", default: "brouillon"
+    t.string "statement", default: "Draft"
     t.index ["category_id"], name: "index_projects_on_category_id"
   end
 

@@ -13,13 +13,6 @@ config.create_another = true
 # end
 
 controller do 
-	def update
-		if Counterpart.save
-			if Counterpart.stock_illimite?
-				Counterpart.stock = 10000000000
-			end
-		end
-	end
 end
 
 

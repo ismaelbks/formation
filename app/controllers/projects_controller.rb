@@ -60,7 +60,7 @@ class ProjectsController < ApplicationController
 	end
 
 	def project_all
-		@projects = Project.displayed.all
+		@projects = Project.all.displayed
 	end
 
 	def categories_all

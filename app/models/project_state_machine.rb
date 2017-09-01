@@ -1,19 +1,23 @@
 class ProjectStateMachine
   include Statesman::Machine
 
-  state :draft, initial: true
-  state :upcoming
-  state :ongoing
-  state :success
-  state :failure
+  state :Draft, initial: true
+  state :Upcoming
+  state :Ongoing
+  state :Success
+  state :Failure
 
 
-  transition from: :draft,      to: [:upcoming]
-  transition from: :upcoming,      to: [:ongoing, :draft]
-  transition from: :ongoing,      to: [:success, :failure]
+  transition from: :Draft,      to: [:Upcoming]
+  transition from: :Upcoming,      to: [:Ongoing, :Draft]
+  transition from: :Ongoing,      to: [:Success, :Failure]
 
-  guard_transition(to: :upcoming) do |project|
-    project.name? && project.short_description? && project.long_description? && project.category_id? && project.portrait_data? && project.landscape_data? && project.collect_amount_goal? == true
+  guard_transition(to: :Upcoming) do |project|
+    project.name? && project.short_description? && project.long_description? && project.category_id? && project.portrait_data? && project.landscape_data? && project.collect_amount_goal?
+  end
+
+  guard_transition(to: :Ongoing) do |project|
+    !project.counterparts.nil?
   end
 
 

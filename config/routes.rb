@@ -10,7 +10,7 @@ Rails.application.routes.draw do
 
   root to: "pages#home"
 
-  resources :projects, only: [:index, :new, :create, :show, :edit, :update]
+  resources :projects
 
   get 'categories/:id/projects', to: 'categories#list', as: 'categories-projects'
 
