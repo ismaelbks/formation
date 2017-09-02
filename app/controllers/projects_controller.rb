@@ -1,5 +1,4 @@
 class ProjectsController < ApplicationController
-
 	
 	def new
 		@project = Project.new
@@ -23,10 +22,20 @@ class ProjectsController < ApplicationController
 	def show
 		project_find
 		@counterparts = Project.find(params[:id]).counterparts
+		if @project.state_machine.current_state == "Failure" || @project.state_machine.current_state == "Draft" 
+			if !current_admin_user
+				redirect_to root_url
+				flash[:alert] = "Ce projet n'est pas disponible pour tout le monde"
+			end
+		end
 	end
 
 	def edit
 		project_find
+		if @project.state_machine.current_state == "Failure" || @project.state_machine.current_state == "Draft" 
+			redirect_to root_url
+			flash[:alert] = "Ce projet n'est pas disponible pour tout le monde"
+		end
 	end
 
 	def update
@@ -47,7 +56,7 @@ class ProjectsController < ApplicationController
 				:name, 
 				:short_description, 
 				:long_description, 
-				:display, 
+				:collect_amount_goal,
 				:landscape, 
 				:remove_landscape, 
 				:portrait, 

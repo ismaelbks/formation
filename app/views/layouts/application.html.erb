@@ -20,6 +20,8 @@
 	        		<div id="login-logout">
 	          			<% if current_user %>
 	          				<%= current_user.firstname.capitalize %> | <%= link_to 'Mon Compte', user_dashboard_path(current_user) %> | <%= link_to "Déconnexion", destroy_user_session_path, :method => :delete %>
+                  <% elsif current_admin_user %>
+                    <%= current_admin_user.email %> | <%= link_to 'Retourner au back-office', admin_dashboard_url %> 
 	          			<% else %>
 	          				<%= link_to 'Login', '/users/sign_in' %> | <%= link_to 'Sign up', '/users/sign_up' %>
 	          			<% end %>

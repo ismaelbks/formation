@@ -9,9 +9,22 @@ ActiveAdmin.register Project do
  filter :name
  filter :collect_amount_goal
  filter :category
- filter :statement, checkboxes: true
+filter :statement, as: :check_boxes, collection: ["Draft","Ongoing","Upcoming","Success","Failure"]
+
 
  config.create_another = true
+ config.batch_actions = false
+
+ before_action :authenticate_admin_user!
+
+scope "Brouillons", :draft
+scope "Bientôt", :upcoming
+scope "Publiés", :ongoing
+scope "Succés", :success
+scope "Echec", :failure
+
+scope "Tous les projets visibles", :displayed
+
 
 # or
 #
@@ -21,44 +34,120 @@ ActiveAdmin.register Project do
 #   permitted
 # end
 
+	member_action :draft,  method: :put do
+		project = Project.find(params[:id])
+		if current_admin_user
+			if project.state_machine.transition_to(:Draft)
+				project.set_statement(project.state_machine.current_state)
+				redirect_to admin_project_path(project)
+				flash[:notice] = "Statut du projet mis à jour"
+			else 
+				redirect_to admin_project_path
+				flash[:alert] = "Action refusée"
+			end
+		else
+			redirect_to admin_root_url
+			flash[:alert] = "Petit coquin, tu n'es pas autorisé à faire ça !"
+		end			
+	end
+
 	member_action :upcoming,  method: :put do
 		project = Project.find(params[:id])
-		if project.state_machine.transition_to(:Upcoming)
-			project.set_statement(project.state_machine.current_state)
-			redirect_to admin_project_path(project)
-			flash[:notice] = "Statut du projet mis à jour"
-		else 
-			redirect_to admin_project_path
-			flash[:alert] = "Action refusée"
-		end
+		if current_admin_user
+			if project.state_machine.transition_to(:Upcoming)
+				project.set_statement(project.state_machine.current_state)
+				redirect_to admin_project_path(project)
+				flash[:notice] = "Statut du projet mis à jour"
+			else 
+				redirect_to admin_project_path
+				flash[:alert] = "Action refusée"
+			end
+		else
+			redirect_to admin_root_url
+			flash[:alert] = "Petit coquin, tu n'es pas autorisé à faire ça !"
+		end			
 	end
 
 	member_action :ongoing,  method: :put do
 		project = Project.find(params[:id])
-		if project.state_machine.transition_to(:Ongoing)
-			project.set_statement(project.state_machine.current_state)
-			redirect_to admin_project_path(project)
-			flash[:notice] = "Le projet a bien été publié"
+		if current_admin_user
+			if project.state_machine.transition_to(:Ongoing)
+				project.set_statement(project.state_machine.current_state)
+				redirect_to admin_project_path(project)
+				flash[:notice] = "Le projet a bien été publié"
+			else 
+				redirect_to admin_project_path
+				flash[:alert] = "Action refusée"
+			end
 		else 
-			redirect_to admin_project_path
-			flash[:alert] = "Action refusée"
+			redirect_to admin_root_url
+			flash[:alert] = "Petit coquin, tu n'es pas autorisé à faire ça !"
 		end
 	end
 
+	member_action :success,  method: :put do
+		project = Project.find(params[:id])
+		if current_admin_user		
+			if project.state_machine.transition_to(:Success)
+				project.set_statement(project.state_machine.current_state)
+				redirect_to admin_project_path(project)
+				flash[:notice] = "Le projet est bien passé au statut succés."
+			else 
+				redirect_to admin_project_path
+				flash[:alert] = "Action refusée"
+			end
+		else
+			redirect_to admin_root_url
+			flash[:alert] = "Petit coquin, tu n'es pas autorisé à faire ça !"
+		end			
+	end
+
+	member_action :failure,  method: :put do
+		project = Project.find(params[:id])
+		if current_admin_user		
+			if project.state_machine.transition_to(:Failure)
+				project.set_statement(project.state_machine.current_state)
+				redirect_to admin_project_path(project)
+				flash[:notice] = "Le projet est bien passé au statut échec."
+			else 
+				redirect_to admin_project_path
+				flash[:alert] = "Action refusée"
+			end
+		else
+			redirect_to admin_root_url
+			flash[:alert] = "Petit coquin, tu n'es pas autorisé à faire ça !"
+		end			
+	end	
 
 
-
-
+	action_item :draft, only: :show, 
+		if: proc{ Project.find(params[:id]).state_machine.can_transition_to?(:Draft) } do
+			link_to 'Repasser en brouillon', draft_admin_project_path, method: :put
+	end
 
 	action_item :upcoming, only: :show, 
-		if: proc{ Project.find(params[:id]).statement == "Draft"} do
+		if: proc{ Project.find(params[:id]).state_machine.can_transition_to?(:Upcoming) } do
 			link_to 'Accepter le projet', upcoming_admin_project_path, method: :put
 	end
 
 	action_item :ongoing, only: :show, 
-		if: proc{ Project.find(params[:id]).statement == "Upcoming"} do
+		if: proc{ Project.find(params[:id]).state_machine.can_transition_to?(:Ongoing) } do
 			link_to 'Publier le projet', ongoing_admin_project_path, method: :put
 	end    
+
+	action_item :success, only: :show, 
+		if: proc{ Project.find(params[:id]).state_machine.can_transition_to?(:Success) } do
+			link_to 'Passer en succés', success_admin_project_path, method: :put
+	end 
+
+	action_item :failure, only: :show, 
+		if: proc{ Project.find(params[:id]).state_machine.can_transition_to?(:Failure) } do
+			link_to 'Passer en échec', failure_admin_project_path, method: :put
+	end 
+
+	action_item :preview, only: :show do
+		link_to 'Aperçu', project_path, method: :get
+	end 	
 
 
 
@@ -71,13 +160,17 @@ ActiveAdmin.register Project do
 	end
 
 
-
 	index title: "Projets" do 
 		h1 "Projets"
 		column "ID", :id
 		column "Nom du projet", :name
 		column "Statut", :statement
-		column "Objectif de collecte", :collect_amount_goal
+		column "Objectif de collecte", :sortable => :collect_amount_goal do |f|
+			number_to_currency f.collect_amount_goal , :unit => "€ "
+		end
+		column "Contreparties" do |f|
+			f.counterparts.count
+		end
 		column "Catégorie associée", :category
 		column "Image du porteur"  do |f|
 			image_tag f.portrait_url(:portrait), class: "aa-index-image" unless f.portrait_data.nil?
