@@ -64,7 +64,7 @@ gem 'rails-assets-jcrop', source: 'https://rails-assets.org'
 gem 'statesman'
 
 #redactor 2 assets manager
-gem 'redactor2_rails'
+#gem 'redactor2_rails'
 
 group :test do
   gem 'rspec'

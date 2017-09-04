@@ -16,4 +16,5 @@
 //= require rails-ujs
 //= require turbolinks
 //= require slick
+//= require redactor
 //= require_tree .
