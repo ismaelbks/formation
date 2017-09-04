@@ -65,6 +65,7 @@ gem 'statesman'
 
 #redactor 2 assets manager
 gem 'redactor2_rails'
+gem "carrierwave"
 
 group :test do
   gem 'rspec'

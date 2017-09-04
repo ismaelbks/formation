@@ -10,6 +10,7 @@
 // Active Admin's got SASS!
 @import "active_admin/mixins";
 @import "arctic_admin";
+@import "redactor";
 
 // Overriding any non-variable SASS must be done after the fact.
 // For example, to change the default status-tag color:
@@ -84,11 +85,12 @@
 
 .project-box {
 	min-height: 27em;
-	max-width: 20em;
+	max-width: 19em;
+	margin-top: 0;
 }
 
 .project-short-describe {
-	min-height: 8em;
+	min-height: 15em;
 	text-align: justify;
 	max-width: 20em;
 	margin: 0 auto;

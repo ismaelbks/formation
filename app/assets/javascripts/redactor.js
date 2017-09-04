@@ -194,7 +194,7 @@
 		toolbar: true,
 		toolbarFixed: true,
 		toolbarFixedTarget: document,
-		toolbarFixedTopOffset: 0, // pixels
+		toolbarFixedTopOffset: 60, // pixels
 		toolbarExternal: false, // ID selector
 		toolbarOverflow: false,
 
