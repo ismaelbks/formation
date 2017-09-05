@@ -10,4 +10,4 @@ Rails.application.config.assets.paths << Rails.root.join('node_modules')
 
 # Precompile additional assets.
 # application.js, application.css, and all non-JS/CSS in the app/assets
-Rails.application.config.assets.precompile += %w( active_admin.js.coffee active_admin.scss pages.scss projects.scss categories.scss)
+Rails.application.config.assets.precompile += %w( active_admin.js.coffee active_admin.scss pages.scss projects.scss categories.scss devise/sessions.css devise/registrations.css users.css)
