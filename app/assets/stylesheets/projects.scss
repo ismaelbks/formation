@@ -34,12 +34,12 @@
 }
 
 .project-box {
-	min-height: 27em;
+	height: 27.7em;
 	max-width: 20em;
 }
 
 .project-short-describe {
-	min-height: 8em ;
+	height: 8em !important;
 	text-align: justify;
 	max-width: 20em;
 	margin: 0 auto;
@@ -78,4 +78,8 @@
 
 .checkbox {
 
+}
+
+.col-md-12.col-sm-4.bloc-contrepartie.thumbnail.counterpart-box {
+	height: 38em !important;
 }

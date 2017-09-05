@@ -15,10 +15,9 @@
  // "bootstrap-sprockets" must be imported before "bootstrap" and "bootstrap/variables"
  @import "bootstrap-sprockets";
  @import "bootstrap";
- @import "pages";
  @import "users";
- @import "projects";
- @import "categories";
+ //@import "projects";
+ //@import "categories";
  @import 'slick';
  @import 'slick-theme';
  @import 'redactor';
