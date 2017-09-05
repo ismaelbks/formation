@@ -187,7 +187,7 @@ scope "Tous les projets visibles", :displayed
 					f.input :category, label: "Catégorie associée"
 					f.input :collect_amount_goal, label: "Objectif de collecte"
 					f.input :short_description, label: "Description courte"   
-					f.input :long_description, label: "Description longue"
+					f.text_area :long_description, id: "long-description-admin", :class => "redactor", :rows => 40, :cols => 120
 					f.file_field :portrait, label: "Image portrait", class: "aa-file-field-form"
 					f.file_field :landscape, label: "Image paysage", class: "aa-file-field-form even"
 			    end
@@ -239,7 +239,7 @@ scope "Tous les projets visibles", :displayed
 					end
 
 					row "Description longue" do
-						f.long_description
+						f.long_description.html_safe
 					end
 
 					row "Catégorie associée" do

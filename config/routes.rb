@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   
+  mount Redactor2Rails::Engine => '/redactor2_rails'
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   #devise routes (authentification)

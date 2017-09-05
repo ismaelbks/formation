@@ -48,14 +48,16 @@ gem "activeadmin"
 #Thme artic admin for active admin: https://github.com/cle61/arctic_admin
 gem 'arctic_admin'
 
-#adding .xls export to active admin
-#gem 'activeadmin-axlsx' #The gem seems to not work for now on
-
 #Managing image uploads with Shrine
 gem 'fastimage'
 gem 'image_processing'
-gem 'mini_magick'
 gem "shrine"
+gem 'mini_magick'
+
+#For Redactor2
+gem "carrierwave"
+
+
 
 #Js cropping of the image uploaded
 gem 'rails-assets-jcrop', source: 'https://rails-assets.org'
@@ -64,7 +66,7 @@ gem 'rails-assets-jcrop', source: 'https://rails-assets.org'
 gem 'statesman'
 
 #redactor 2 assets manager
-#gem 'redactor2_rails'
+gem 'redactor2_rails'
 
 group :test do
   gem 'rspec'
