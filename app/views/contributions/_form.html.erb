@@ -1,0 +1,18 @@
+<div class="col-md-3">
+		<div class="col-md-12 col-sm-4 bloc-contrepartie">
+			<div class="thumbnail contribution-box">
+				<h2 class="hidden-aa">&nbsp;&nbsp;Contribution libre</h2>
+				<p>Vous avez la possibilité de contribuer d'un montant libre ou bien de choisir directement l'une des contributions ci-dessous. La contribution libre vous donne également droit à une contrepartie si vous atteignez son montant plancher. Pensez à bien la choisir dans le menu déroulant avant de valider. </p>
+				<hr>
+
+			<div class="form-group contribution">
+				<%= form_for(@contribution) do |f| %>
+				  	<%= f.label "Montant", class: "control-label col-lg-12" %>
+				  		<%= number_field(:amount, :price, in: 5..10000, step: 5, class: "form-control") %>
+				  		<%= f.submit "Contribuer", class: "btn btn-primary nav-justified hidden-aa form-control marged-contribution-action" %>
+				<% end %>
+			</div>		
+
+			</div>
+		</div>
+</div>

@@ -20,6 +20,7 @@ class ProjectsController < ApplicationController
 	end
 
 	def show
+		@contribution = Contribution.new
 		project_find
 		@counterparts = Project.find(params[:id]).counterparts
 		if @project.state_machine.current_state == "Failure" || @project.state_machine.current_state == "Draft" 
