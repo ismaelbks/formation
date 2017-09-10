@@ -21,6 +21,9 @@
  @import 'redactor';
 
 
+body {
+	min-height: 40em;
+}
 
  #login-logout {
  	margin-top: 2em;

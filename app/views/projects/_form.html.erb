@@ -31,19 +31,19 @@
 				</div>
 			</div>				
 
-			<div class="form-group inline-group">
-			  	<%= f.label :landscape, class: "control-label col-sm-2" %>
-				<div class="col-md-6 child-vertical-centered">
+			<div class="form-group inline-group flexed">
+			  	<%= f.label :landscape, class: "control-label col-sm-2 child-vertical-center" %>
+				<div class="col-sm-6 child-vertical-centered">
 					<div class="input-group ">
 	        			<span class="input-group-addon"><i class="glyphicon glyphicon-picture"></i></span>
 	        			<%= f.file_field :landscape, class: "form-control" %>
 	        		</div>
 	      		</div>
 				<% if @project.landscape_data? %>
-				<div class="col-md-4 child-vertical-centered">
+				<div class="col-sm-4 child-vertical-centered">
 					<div class="checkbox vertical-centered">
 						<%= f.label :remove_landscape do %>
-								 <%= f.check_box :remove_landscape, class: "form-control" %>
+								 <%= f.check_box :remove_landscape, class: "" %>
 							Supprimer l'image?
 						<% end %>
 					</div>
@@ -51,8 +51,8 @@
 				<% end %>
 			</div>
 
-			<div class="form-group inline-group">
-			  	<%= f.label :portrait, class: "control-label col-sm-2" %>
+			<div class="form-group inline-group flexed">
+			  	<%= f.label :portrait, class: "control-label col-md-2 child-vertical-center" %>
 				<div class="col-md-6">
 					<div class="input-group">
 	        			<span class="input-group-addon"><i class="glyphicon glyphicon-picture"></i></span>
@@ -60,10 +60,10 @@
 	        		</div>
 	      		</div>
 				<% if @project.portrait_data? %>
-				<div class="col-md-4">
-					<div class="checkbox">
+				<div class="col-md-4 child-vertical-centered">
+					<div class="checkbox vertical-centered">
 						<%= f.label :remove_portrait do %>
-								 <%= f.check_box :remove_portrait, class: "form-control" %>
+								 <%= f.check_box :remove_portrait, class: "" %>
 							Supprimer l'image?
 						<% end %>
 					</div>

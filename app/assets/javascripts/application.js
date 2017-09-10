@@ -14,7 +14,6 @@
 //= require jquery_ujs
 //= require bootstrap-sprockets
 //= require rails-ujs
-//= require turbolinks
 //= require slick
 //= require redactor2_rails
 //= require redactor
