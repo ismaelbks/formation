@@ -6,10 +6,16 @@
 				<hr>
 
 			<div class="form-group contribution">
-				<%= form_for(@contribution) do |f| %>
-				  	<%= f.label "Montant", class: "control-label col-lg-12" %>
-				  		<%= number_field(:amount, :price, in: 5..10000, step: 5, class: "form-control") %>
-				  		<%= f.submit "Contribuer", class: "btn btn-primary nav-justified hidden-aa form-control marged-contribution-action" %>
+				<% if @project.ongoing? %>
+					<% if current_user %>
+						<%= form_for(@contribution) do |f| %>
+						  	<%= f.label "Montant", class: "control-label col-lg-12" %>
+						  		<%= number_field(:amount, :price, in: 5..10000, step: 5, class: "form-control") %>
+						  		<%= f.submit "Contribuer", class: "btn btn-primary nav-justified hidden-aa form-control marged-contribution-action" %>
+						<% end %>
+					<% else %>
+						<p>Veuillez vous <%= link_to "connecter", user_session_url %> ou vous <%= link_to "inscrire", new_user_registration_url %> pour pouvoir contribuer sur ce projet. </p>
+					<% end %>
 				<% end %>
 			</div>		
 

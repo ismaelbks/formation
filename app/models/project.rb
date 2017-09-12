@@ -53,7 +53,6 @@ class Project < ApplicationRecord
     scope :success, -> { where(statement: "Success") }
     scope :failure, -> { where(statement: "Failure") }
 
-
     scope :displayed, -> { where(statement: ["Upcoming", "Ongoing", "Success"]) }
 
 
